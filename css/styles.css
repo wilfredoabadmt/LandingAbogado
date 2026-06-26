@@ -204,7 +204,7 @@ ul {
     height: 100%;
     object-fit: cover;
     z-index: 0;
-    opacity: 0.35;
+    opacity: 0.25;
 }
 
 .hero-bg-image {
@@ -215,7 +215,7 @@ ul {
     background-size: cover;
     background-position: center;
     z-index: 0;
-    opacity: 0.35;
+    opacity: 0.25;
 }
 
 .hero-bg-overlay {
@@ -308,7 +308,7 @@ ul {
     gap: 16px;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 60px;
+    margin-bottom: 0;
 }
 
 /* Buttons */

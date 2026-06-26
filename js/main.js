@@ -286,21 +286,7 @@ function throttle(func, limit) {
    Hero Video/Image Fallback
    ======================================== */
 function initHeroVideoFallback() {
-    // 1. Balanza de la justicia hero video
-    const video = document.getElementById('hero-video');
-    const image = document.getElementById('hero-image');
-    if (video && image) {
-        // If the video can play, display it and hide the fallback image
-        video.addEventListener('canplay', function() {
-            video.style.display = 'block';
-            image.style.display = 'none';
-        });
-        
-        // Explicitly trigger load check
-        video.load();
-    }
-
-    // 2. Video de fondo del hero
+    // Video de fondo del hero
     const bgVideo = document.getElementById('hero-bg-video');
     const bgImage = document.getElementById('hero-bg-image');
     if (bgVideo && bgImage) {

@@ -60,11 +60,20 @@ def grant_github_app_access(repo_id, installation_id):
 def initialize_and_push(repo_name, owner, local_path="."):
     os.chdir(local_path)
     
-    subprocess.run(["git", "init"], check=True)
+    # Check if git repo already exists
+    result = subprocess.run(["git", "status"], capture_output=True, text=True)
+    if result.returncode != 0:
+        subprocess.run(["git", "init"], check=True)
+    
     subprocess.run(["git", "add", "."], check=True)
     subprocess.run(["git", "commit", "-m", "Initial commit"], check=True)
     subprocess.run(["git", "branch", "-M", "main"], check=True)
-    subprocess.run(["git", "remote", "add", "origin", f"https://{GITHUB_TOKEN}@github.com/{owner}/{repo_name}.git"], check=True)
+    
+    # Try to add remote, if it exists just push
+    remote_result = subprocess.run(["git", "remote"], capture_output=True, text=True)
+    if "origin" not in remote_result.stdout:
+        subprocess.run(["git", "remote", "add", "origin", f"https://{GITHUB_TOKEN}@github.com/{owner}/{repo_name}.git"], check=True)
+    
     subprocess.run(["git", "push", "-u", "origin", "main"], check=True)
     
     print(f" Código subido a github.com/{owner}/{repo_name}")

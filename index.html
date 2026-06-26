@@ -21,6 +21,7 @@
             </a>
             <div class="nav-menu" id="nav-menu">
                 <a href="#inicio" class="nav-link">Inicio</a>
+                <a href="#sobre-mi" class="nav-link">Sobre Mí</a>
                 <a href="#areas" class="nav-link">Áreas</a>
                 <a href="#proceso" class="nav-link">Proceso</a>
                 <a href="#resultados" class="nav-link">Resultados</a>
@@ -64,16 +65,11 @@
                     <span>Ver Áreas</span>
                 </a>
             </div>
-            <div class="hero-video-placeholder" id="video-placeholder">
-                <div class="video-placeholder-content">
-                    <div class="video-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <polygon points="5 3 19 12 5 21 5 3"/>
-                        </svg>
-                    </div>
-                    <p>Animación Seedance 2.0</p>
-                    <span class="video-badge">Próximamente</span>
-                </div>
+            <div class="hero-media-container" id="media-container">
+                <video autoplay loop muted playsinline class="hero-video" id="hero-video" style="display: none;">
+                    <source src="assets/justice_loop.mp4" type="video/mp4">
+                </video>
+                <img src="assets/justice_scales.png" alt="Balanza de la Justicia Digital" class="hero-image" id="hero-image">
             </div>
         </div>
         <div class="hero-scroll">
@@ -110,6 +106,51 @@
                     <span class="trust-number" data-count="24">0</span>
                     <span class="trust-suffix">/7</span>
                     <p class="trust-label">Disponibilidad</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="sobre-mi">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image-wrapper">
+                    <img src="assets/vladimir.png" alt="Vladimir Mejía" class="about-image">
+                    <div class="about-image-overlay"></div>
+                </div>
+                <div class="about-text">
+                    <span class="section-tag">Sobre Mí</span>
+                    <h2 class="section-title">Vladimir Mejía</h2>
+                    <p class="section-subtitle" style="text-align: left; margin: 0 0 16px 0;">Abogado & Defensor de tus Derechos</p>
+                    <p class="about-p">
+                        Con más de 15 años de trayectoria profesional en el ámbito legal, me he dedicado a defender los derechos de mis clientes con pasión, integridad y excelencia. Mi enfoque combina una profunda comprensión del derecho tradicional con una mentalidad innovadora, adaptándome a los retos y dinámicas del mundo contemporáneo.
+                    </p>
+                    <p class="about-p">
+                        Entiendo que enfrentar un problema legal puede ser abrumador. Por ello, ofrezco un acompañamiento personalizado, asegurando que cada cliente reciba una estrategia sólida y una comunicación clara en cada paso de su proceso.
+                    </p>
+                    <div class="about-pilares">
+                        <div class="pilar-item">
+                            <span class="pilar-icon">🤝</span>
+                            <div class="pilar-content">
+                                <h4>Compromiso Inquebrantable</h4>
+                                <p>Asumo cada caso como propio, dedicando todos los recursos y esfuerzos necesarios para lograr el mejor resultado posible.</p>
+                            </div>
+                        </div>
+                        <div class="pilar-item">
+                            <span class="pilar-icon">⚖️</span>
+                            <div class="pilar-content">
+                                <h4>Ética y Transparencia</h4>
+                                <p>Brindo una evaluación honesta y realista de tu situación, sin promesas vacías ni sorpresas de honorarios ocultos.</p>
+                            </div>
+                        </div>
+                        <div class="pilar-item">
+                            <span class="pilar-icon">🎯</span>
+                            <div class="pilar-content">
+                                <h4>Enfoque en Resultados</h4>
+                                <p>Estrategias legales inteligentes y dinámicas orientadas a resolver conflictos de manera ágil y efectiva.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -623,6 +664,7 @@
                         <h4 class="footer-heading">Empresa</h4>
                         <ul>
                             <li><a href="#inicio">Inicio</a></li>
+                            <li><a href="#sobre-mi">Sobre Mí</a></li>
                             <li><a href="#proceso">Cómo Funciona</a></li>
                             <li><a href="#resultados">Resultados</a></li>
                             <li><a href="#testimonios">Testimonios</a></li>

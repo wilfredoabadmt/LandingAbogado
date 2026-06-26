@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initParticles();
     initContactForm();
     initSmoothScroll();
+    initHeroVideoFallback();
 });
 
 /* ========================================
@@ -76,6 +77,9 @@ function initScrollAnimations() {
                         counter.classList.add('counted');
                     }
                 }
+                
+                // Unobserve the element so it remains visible and avoids layout conflicts
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
@@ -87,17 +91,18 @@ function initScrollAnimations() {
     
     // Observe other elements
     const animateElements = document.querySelectorAll(
-        '.area-card, .process-step, .result-card, .testimonial-card, .contact-wrapper'
+        '.about-image-wrapper, .pilar-item, .area-card, .process-step, .result-card, .testimonial-card, .contact-wrapper'
     );
     
     animateElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
         observer.observe(el);
     });
     
     // Add staggered animation delays
+    document.querySelectorAll('.about-pilares .pilar-item').forEach((card, index) => {
+        card.style.transitionDelay = `${index * 0.1}s`;
+    });
+
     document.querySelectorAll('.areas-grid .area-card').forEach((card, index) => {
         card.style.transitionDelay = `${index * 0.1}s`;
     });
@@ -275,4 +280,22 @@ function throttle(func, limit) {
             setTimeout(() => inThrottle = false, limit);
         }
     };
+}
+
+/* ========================================
+   Hero Video/Image Fallback
+   ======================================== */
+function initHeroVideoFallback() {
+    const video = document.getElementById('hero-video');
+    const image = document.getElementById('hero-image');
+    if (video && image) {
+        // If the video can play, display it and hide the fallback image
+        video.addEventListener('canplay', function() {
+            video.style.display = 'block';
+            image.style.display = 'none';
+        });
+        
+        // Explicitly trigger load check
+        video.load();
+    }
 }

@@ -197,6 +197,34 @@ ul {
     z-index: 0;
 }
 
+.hero-bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.35;
+}
+
+.hero-bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    opacity: 0.35;
+}
+
+.hero-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(10, 10, 10, 0.65) 0%, rgba(10, 10, 10, 0.95) 100%);
+    z-index: 1;
+}
+
 .hero-particles {
     position: absolute;
     inset: 0;
@@ -533,8 +561,6 @@ ul {
 }
 
 .area-card {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-color);
     border-radius: 16px;
     padding: 32px;
     transition: var(--transition);
@@ -542,26 +568,68 @@ ul {
     overflow: hidden;
 }
 
-.area-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
-    transform: scaleX(0);
-    transition: var(--transition);
-}
-
 .area-card:hover {
     transform: translateY(-8px);
-    border-color: var(--primary);
     box-shadow: var(--shadow-glow);
 }
 
-.area-card:hover::before {
-    transform: scaleX(1);
+/* Laser Border Effect on Cards */
+.area-card, .pilar-item {
+    position: relative;
+    background: rgba(26, 26, 26, 0.6) !important;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 212, 255, 0.05) !important;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.area-card::before, .pilar-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        transparent,
+        rgba(0, 212, 255, 0.1),
+        var(--primary),
+        var(--accent),
+        transparent 30%
+    );
+    animation: border-laser 6s linear infinite;
+    z-index: -2;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.area-card.animate-in::before, .pilar-item.animate-in::before {
+    opacity: 1;
+}
+
+.area-card::after, .pilar-item::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: var(--bg-surface);
+    border-radius: inherit;
+    z-index: -1;
+    transition: background-color 0.3s ease;
+    pointer-events: none;
+}
+
+.area-card:hover::after, .pilar-item:hover::after {
+    background: var(--bg-surface-hover);
+}
+
+@keyframes border-laser {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .area-icon {
@@ -1195,15 +1263,12 @@ a.contact-value:hover {
 .pilar-item {
     display: flex;
     gap: 16px;
-    background: var(--bg-surface);
     padding: 20px;
     border-radius: 12px;
-    border: 1px solid var(--border-color);
     transition: var(--transition);
 }
 
 .pilar-item:hover {
-    border-color: var(--primary);
     transform: translateX(5px);
     box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
 }

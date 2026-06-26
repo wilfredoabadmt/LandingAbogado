@@ -33,6 +33,19 @@ class CoolifyManager:
             }
         }
         
+        # Try the private-github-app endpoint first
+        r = requests.post(
+            f"{self.base_url}/api/v1/applications/private-github-app",
+            headers=self.headers,
+            json=data
+        )
+        
+        if r.status_code in [200, 201]:
+            result = r.json()
+            print(f"App creada: {result.get('uuid')}")
+            return result
+        
+        # Fallback to standard endpoint
         r = requests.post(
             f"{self.base_url}/api/v1/applications",
             headers=self.headers,

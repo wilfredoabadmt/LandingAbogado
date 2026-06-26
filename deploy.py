@@ -22,8 +22,19 @@ print("=" * 60)
 print("\n[1/4] Creando repo privado en GitHub...")
 result = create_private_repo(REPO_NAME, DESCRIPTION)
 if not result:
-    print("ERROR: No se pudo crear el repo")
-    sys.exit(1)
+    # Check if repo already exists
+    import requests
+    headers = {
+        "Authorization": f"token {os.getenv('GITHUB_TOKEN')}",
+        "Accept": "application/vnd.github.v3+json"
+    }
+    r = requests.get(f"https://api.github.com/repos/wilfredoabadmt/{REPO_NAME}", headers=headers)
+    if r.status_code == 200:
+        print(f"Repo ya existe: wilfredoabadmt/{REPO_NAME}")
+        result = ("wilfredoabadmt", REPO_NAME, r.json()["id"])
+    else:
+        print("ERROR: No se pudo crear el repo")
+        sys.exit(1)
 
 owner, repo_name, repo_id = result
 

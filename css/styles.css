@@ -191,6 +191,21 @@ ul {
     overflow: hidden;
 }
 
+/* Moving cyber laser scanning line */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+    animation: scan-line 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
 .hero-bg {
     position: absolute;
     inset: 0;
@@ -204,7 +219,7 @@ ul {
     height: 100%;
     object-fit: cover;
     z-index: 0;
-    opacity: 0.25;
+    opacity: 0.35;
 }
 
 .hero-bg-image {
@@ -215,7 +230,7 @@ ul {
     background-size: cover;
     background-position: center;
     z-index: 0;
-    opacity: 0.25;
+    opacity: 0.35;
 }
 
 .hero-bg-overlay {
@@ -261,6 +276,8 @@ ul {
     font-size: 14px;
     color: var(--primary);
     margin-bottom: 24px;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
 }
 
 .badge-dot {
@@ -288,11 +305,22 @@ ul {
     display: block;
 }
 
+.hero-title .title-line:nth-child(1) {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+    opacity: 0;
+}
+
+.hero-title .title-line:nth-child(2) {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    opacity: 0;
+}
+
 .title-highlight {
     background: linear-gradient(135deg, var(--primary), var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.45));
 }
 
 .hero-subtitle {
@@ -301,6 +329,8 @@ ul {
     max-width: 600px;
     margin: 0 auto 40px;
     line-height: 1.8;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+    opacity: 0;
 }
 
 .hero-cta {
@@ -309,6 +339,26 @@ ul {
     justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scan-line {
+    0% { top: -4px; opacity: 0; }
+    5% { opacity: 0.35; }
+    95% { opacity: 0.35; }
+    100% { top: 100%; opacity: 0; }
 }
 
 /* Buttons */
